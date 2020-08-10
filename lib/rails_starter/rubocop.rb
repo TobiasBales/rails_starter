@@ -2,12 +2,14 @@
 # frozen_string_literal: true
 
 require 'rails_starter/component'
+require 'rails_starter/file_component'
 
 module RailsStarter
   class Rubocop
     extend T::Sig
 
     include Component
+    include FileComponent
 
     sig { params(path: String).void }
     def initialize(path)
@@ -16,19 +18,13 @@ module RailsStarter
 
     sig { override.returns(T::Boolean) }
     def met?
-      File.exist?(File.join(@path, '.rubocop.yml'))
+      file_exists?('.rubocop.yml', @path)
     end
 
     sig { override.returns(T::Boolean) }
     def meet
-      FileUtils.cp(source_file_path('.rubocop.yml'), File.join(@path, '.rubocop.yml'))
+      copy_file('.rubocop.yml', @path)
       true
-    end
-
-    private
-
-    def source_file_path(filename)
-      File.join(Dir.getwd, 'static', filename)
     end
   end
 end
