@@ -1,4 +1,7 @@
-require "rails_starter/version"
+# typed: strict
+# frozen_string_literal: true
+
+require 'rails_starter/version'
 
 module RailsStarter
   class Error < StandardError; end
