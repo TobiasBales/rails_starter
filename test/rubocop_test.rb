@@ -29,6 +29,7 @@ class RubocopTest < Minitest::Test
   def test_that_meet_results_in_met
     FileUtils.mkdir_p tmp_path
     Dir.mktmpdir('meet_results_in_met', tmp_path) do |d|
+      `touch #{File.join(d, 'Gemfile')}`
       subject = RailsStarter::Rubocop.new(d)
 
       refute subject.met?, 'Should not be met on new directory'

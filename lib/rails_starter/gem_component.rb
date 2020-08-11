@@ -8,14 +8,14 @@ module RailsStarter
   module GemComponent
     extend T::Sig
 
-    sig { params(gem: String).returns(T::Boolean) }
-    def gem_installed?(gem)
-      file_contains?(File.join(Dir.getwd, 'Gemfile'), gem)
+    sig { params(gem: String, path: String).returns(T::Boolean) }
+    def gem_installed?(gem, path)
+      file_contains?(File.join(path, 'Gemfile'), gem)
     end
 
-    sig { params(gem: String).void }
-    def install_gem(gem)
-      append_to_file('Gemfile', "gem '#{gem}'\n")
+    sig { params(gem: String, path: String).void }
+    def install_gem(gem, path)
+      append_to_file(File.join(path, 'Gemfile'), "gem '#{gem}'\n")
     end
 
     sig { void }
