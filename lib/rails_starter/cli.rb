@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require 'sorbet-runtime'
+require 'rails_starter/linters/brakeman'
 require 'rails_starter/linters/rubocop'
 require 'tty-prompt'
 
@@ -17,7 +18,8 @@ module RailsStarter
     sig { void }
     def start
       linter_options = {
-        rubocop: RailsStarter::Rubocop.new(Dir.getwd)
+        rubocop: RailsStarter::Rubocop.new(Dir.getwd),
+        brakeman: RailsStarter::Brakeman.new(Dir.getwd)
       }
       linters = @prompt.multi_select('Which linters do you want?') do |menu|
         linter_options.each do |linter, component|
