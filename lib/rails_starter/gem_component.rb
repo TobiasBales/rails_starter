@@ -18,6 +18,11 @@ module RailsStarter
       append_to_file('Gemfile', "gem '#{gem}'\n")
     end
 
+    sig { void }
+    def bundle_install
+      Bundler.with_unbundled_env { `bundle install` }
+    end
+
     private
 
     sig { params(filename: String, string: String).returns(T::Boolean) }

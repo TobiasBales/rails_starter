@@ -4,4 +4,4 @@
 
 require 'rails_starter/cli'
 
-RailsStarter::CLI.start
+RailsStarter::CLI.new.start

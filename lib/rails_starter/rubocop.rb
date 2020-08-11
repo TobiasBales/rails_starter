@@ -29,11 +29,12 @@ module RailsStarter
 
     sig { override.returns(T::Boolean) }
     def meet
-      install_gem('rubocop')
-      install_gem('rubocop-performance')
-      install_gem('rubocop-rails')
-      install_gem('rubocop-minitest')
-      copy_file('.rubocop.yml', @path)
+      install_gem('rubocop') unless gem_installed?('rubocop')
+      install_gem('rubocop-performance') unless gem_installed?('rubocop-performance')
+      install_gem('rubocop-rails') unless gem_installed?('rubocop-rails')
+      install_gem('rubocop-minitest') unless gem_installed?('rubocop-minitest')
+      copy_file('.rubocop.yml', @path) unless file_exists?('.rubocop.yml', @path)
+      bundle_install
       true
     end
   end

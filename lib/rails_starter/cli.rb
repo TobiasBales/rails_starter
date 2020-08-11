@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require 'sorbet-runtime'
+require 'rails_starter/rubocop'
 require 'tty-prompt'
 
 module RailsStarter
@@ -14,8 +15,17 @@ module RailsStarter
     end
 
     sig { void }
-    def self.start
-      puts 'This is rails_starter, sadly it does not do anything right now'
+    def start
+      linter_options = {
+        rubocop: RailsStarter::Rubocop.new(Dir.getwd)
+      }
+      linters = @prompt.multi_select('Which linters do you want?') do |menu|
+        linter_options.each do |linter, component|
+          menu.choice linter, component, disabled: component.met? ? '(already installed)' : nil
+        end
+      end
+
+      linters.each(&:meet)
     end
   end
 end
