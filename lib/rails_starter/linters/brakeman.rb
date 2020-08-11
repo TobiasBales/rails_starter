@@ -23,6 +23,7 @@ module RailsStarter
       gem_installed?('brakeman', @path)
     end
 
+    sig { override.void }
     def meet
       install_gem('brakeman', @path) unless gem_installed?('brakeman', @path)
       bundle_install

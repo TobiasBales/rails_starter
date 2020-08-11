@@ -44,11 +44,11 @@ class RubocopTest < Minitest::Test
 
   sig { returns(String) }
   def tmp_path
-    File.join(Dir.getwd, 'test', 'tmp', 'components', 'rubocop')
+    File.join(Dir.getwd, 'test', 'tmp', 'linters', 'rubocop')
   end
 
   sig { params(fixture: String).returns(String) }
   def fixture_path(fixture)
-    File.join(Dir.getwd, 'test', 'fixtures', 'components', 'rubocop', fixture)
+    File.join(Dir.getwd, 'test', 'fixtures', 'linters', 'rubocop', fixture)
   end
 end

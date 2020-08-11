@@ -8,6 +8,8 @@ module RailsStarter
   module GemComponent
     extend T::Sig
 
+    include Kernel
+
     sig { params(gem: String, path: String).returns(T::Boolean) }
     def gem_installed?(gem, path)
       file_contains?(File.join(path, 'Gemfile'), gem)

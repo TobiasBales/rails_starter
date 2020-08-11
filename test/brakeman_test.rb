@@ -44,11 +44,11 @@ class BrakemanTest < Minitest::Test
 
   sig { returns(String) }
   def tmp_path
-    File.join(Dir.getwd, 'test', 'tmp', 'components', 'brakeman')
+    File.join(Dir.getwd, 'test', 'tmp', 'linters', 'brakeman')
   end
 
   sig { params(fixture: String).returns(String) }
   def fixture_path(fixture)
-    File.join(Dir.getwd, 'test', 'fixtures', 'components', 'brakeman', fixture)
+    File.join(Dir.getwd, 'test', 'fixtures', 'linters', 'brakeman', fixture)
   end
 end
