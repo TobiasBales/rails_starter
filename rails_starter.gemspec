@@ -30,4 +30,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'activesupport', '~> 6.0'
   spec.add_runtime_dependency 'sorbet-runtime', '~> 0.5.5866'
+  spec.add_runtime_dependency 'tty-prompt', '~> 0.22.0'
 end
