@@ -4520,7 +4520,7 @@ class Hash
 end
 
 class Hash
-  def self.from_trusted_xml(xml); end
+  def self.from_xml(xml, disallowed_types=T.unsafe(nil)); end
 end
 
 module I18n
@@ -5365,7 +5365,7 @@ class RailsStarter::CLI
   extend ::T::Private::Methods::SingletonMethodHooks
 end
 
-module RailsStarter::Component
+class RailsStarter::Component
   extend ::T::Private::Abstract::Hooks
   extend ::T::InterfaceWrapper::Helpers
   extend ::T::Private::Methods::MethodHooks
@@ -5382,7 +5382,7 @@ module RailsStarter::GemComponent
   extend ::T::Private::Methods::SingletonMethodHooks
 end
 
-class RailsStarter::Rubocop
+class RailsStarter::Linters
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
 end

@@ -6,17 +6,11 @@ require 'rails_starter/file_component'
 require 'rails_starter/gem_component'
 
 module RailsStarter
-  class Rubocop
+  class Rubocop < Component
     extend T::Sig
 
-    include Component
     include FileComponent
     include GemComponent
-
-    sig { params(path: String).void }
-    def initialize(path)
-      @path = path
-    end
 
     sig { override.returns(T::Boolean) }
     def met?

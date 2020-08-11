@@ -2,10 +2,15 @@
 # frozen_string_literal: true
 
 module RailsStarter
-  module Component
+  class Component
     extend T::Sig
     extend T::Helpers
     abstract!
+
+    sig { params(path: String).void }
+    def initialize(path)
+      @path = path
+    end
 
     sig { abstract.returns(T::Boolean) }
     def met?; end
