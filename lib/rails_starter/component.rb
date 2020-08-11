@@ -10,7 +10,7 @@ module RailsStarter
     sig { abstract.returns(T::Boolean) }
     def met?; end
 
-    sig { abstract.returns(T::Boolean) }
+    sig { abstract.void }
     def meet; end
   end
 end
