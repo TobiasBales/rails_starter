@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require 'sorbet-runtime'
-require 'rails_starter/rubocop'
+require 'rails_starter/linters/rubocop'
 require 'tty-prompt'
 
 module RailsStarter

@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require 'rails_starter/rubocop'
+require 'rails_starter/linters/rubocop'
 
 class RubocopTest < Minitest::Test
   extend T::Sig
