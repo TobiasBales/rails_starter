@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6
+    - name: Install OS dependencies
+      run: sudo apt-get install -y pwgen
+    - name: Install dependencies
+      run: bundle install
+    - name: Tests
+      run: bundle exec rake test
+    - name: Rubocop
+      run: bundle exec rubocop .
