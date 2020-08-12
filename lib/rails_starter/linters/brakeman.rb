@@ -9,18 +9,13 @@ module RailsStarter
   class Brakeman < Component
     extend T::Sig
 
-    include FileComponent
     include GemComponent
 
-    sig { override.returns(T::Boolean) }
-    def met?
-      gem_installed?('brakeman', @path)
-    end
+    sig { params(path: String).void }
+    def initialize(path)
+      super(path)
 
-    sig { override.void }
-    def meet
-      install_gem('brakeman', @path) unless gem_installed?('brakeman', @path)
-      bundle_install
+      require_gem 'brakeman'
     end
   end
 end

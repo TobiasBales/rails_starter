@@ -12,23 +12,15 @@ module RailsStarter
     include FileComponent
     include GemComponent
 
-    sig { override.returns(T::Boolean) }
-    def met?
-      gem_installed?('rubocop', @path) &&
-        gem_installed?('rubocop-performance', @path) &&
-        gem_installed?('rubocop-rails', @path) &&
-        gem_installed?('rubocop-minitest', @path) &&
-        file_exists?('.rubocop.yml', @path)
-    end
+    sig { params(path: String).void }
+    def initialize(path)
+      super(path)
 
-    sig { override.void }
-    def meet
-      install_gem('rubocop', @path) unless gem_installed?('rubocop', @path)
-      install_gem('rubocop-performance', @path) unless gem_installed?('rubocop-performance', @path)
-      install_gem('rubocop-rails', @path) unless gem_installed?('rubocop-rails', @path)
-      install_gem('rubocop-minitest', @path) unless gem_installed?('rubocop-minitest', @path)
-      copy_file('.rubocop.yml', @path) unless file_exists?('.rubocop.yml', @path)
-      bundle_install
+      require_gem('rubocop')
+      require_gem('rubocop-performance')
+      require_gem('rubocop-rails')
+      require_gem('rubocop-minitest')
+      require_file('.rubocop.yml')
     end
   end
 end
