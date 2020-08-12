@@ -27,7 +27,7 @@ GEM
     pastel (0.8.0)
       tty-color (~> 0.5)
     rainbow (3.0.0)
-    rake (12.3.3)
+    rake (13.0.1)
     regexp_parser (1.7.1)
     rexml (3.2.4)
     rubocop (0.89.1)
@@ -74,7 +74,7 @@ PLATFORMS
 DEPENDENCIES
   minitest (~> 5.0)
   rails_starter!
-  rake (~> 12.0)
+  rake (~> 13.0)
   rubocop (~> 0.89.1)
   rubocop-performance (~> 1.7)
   sorbet (~> 0.5.5867)
