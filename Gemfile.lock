@@ -44,10 +44,10 @@ GEM
     rubocop-performance (1.7.1)
       rubocop (>= 0.82.0)
     ruby-progressbar (1.10.1)
-    sorbet (0.5.5888)
-      sorbet-static (= 0.5.5888)
+    sorbet (0.5.5909)
+      sorbet-static (= 0.5.5909)
     sorbet-runtime (0.5.5881)
-    sorbet-static (0.5.5888-universal-darwin-14)
+    sorbet-static (0.5.5909-universal-darwin-14)
     strong_versions (0.4.5)
       i18n (>= 0.5)
       paint (~> 2.0)
@@ -77,7 +77,7 @@ DEPENDENCIES
   rake (~> 13.0)
   rubocop (~> 0.90.0)
   rubocop-performance (~> 1.7)
-  sorbet (~> 0.5.5888)
+  sorbet (~> 0.5.5909)
   strong_versions (~> 0.4.5)
 
 BUNDLED WITH
