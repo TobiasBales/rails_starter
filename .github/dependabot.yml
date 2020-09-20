@@ -4,7 +4,15 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    labels:
+      - "bundler"
+      - "dependencies"
+      - "automerge"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
+    labels:
+      - "github-actions"
+      - "dependencies"
+      - "automerge"
