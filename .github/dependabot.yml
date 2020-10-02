@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: "daily"
     labels:
-      - "bundler"
+      - "ruby"
       - "dependencies"
       - "automerge"
   - package-ecosystem: "github-actions"
