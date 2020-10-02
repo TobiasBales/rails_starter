@@ -59,7 +59,7 @@ module RailsStarter
 
     sig { params(filename: String).returns(String) }
     def source_file_path(filename)
-      File.join(Dir.getwd, 'static', filename)
+      File.join(File.dirname(__FILE__), '..', '..', 'static', filename)
     end
   end
 end
