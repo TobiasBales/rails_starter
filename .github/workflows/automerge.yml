@@ -18,14 +18,21 @@ on:
       - completed
   status: {}
 jobs:
-  automerge:
+  automerge-dependabot:
     runs-on: ubuntu-latest
     steps:
       - name: automerge
-        uses: "pascalgn/automerge-action@eb9575adbe8c16386ad6a33ffc74812bfd530f90"
+        uses: "pascalgn/automerge-action@v0.11.0"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_FORKS: "false"
-          MERGE_RETRIES: "6"
-          MERGE_RETRY_SLEEP: "10000"
           MERGE_FILTER_AUTHOR: "dependabot"
+  automerge-tobiasbales:
+    runs-on: ubuntu-latest
+    steps:
+      - name: automerge
+        uses: "pascalgn/automerge-action@v0.11.0"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_FORKS: "false"
+          MERGE_FILTER_AUTHOR: "TobiasBales"
