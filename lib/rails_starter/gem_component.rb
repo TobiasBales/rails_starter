@@ -39,15 +39,20 @@ module RailsStarter
       @gems ||= []
     end
 
-    sig { void }
-    # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity
-    def ensure_gems_registered
-      raise 'Must include RailsStarter::Component first' unless is_a?(RailsStarter::Component)
-
+    def gems_registered
       @gems_registered = T.let(@gems_registered, T.nilable(T::Boolean))
       @gems_registered ||= false
+    end
 
-      return if @gems_registered
+    def gems_registered=(gems_registered)
+      @gems_registered = T.let(@gems_registered, T.nilable(T::Boolean))
+      @gems_registered = gems_registered
+    end
+
+    sig { void }
+    # rubocop:disable Metrics/MethodLength
+    def ensure_gems_registered
+      return if gems_registered
 
       register_met_hook do |path|
         gems.reduce(true) do |met, gem|
@@ -62,9 +67,9 @@ module RailsStarter
         bundle_install
       end
 
-      @gems_registered = true
+      self.gems_registered = true
     end
-    # rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/MethodLength
 
     sig { params(filename: String, string: String).returns(T::Boolean) }
     def file_contains?(filename, string)

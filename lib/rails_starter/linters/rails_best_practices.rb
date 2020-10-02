@@ -10,19 +10,14 @@ module RailsStarter
   class RailsBestPractices < Component
     extend T::Sig
 
-    include BinaryComponent
-    include FileComponent
-    include GemComponent
+    extend BinaryComponent
+    extend FileComponent
+    extend GemComponent
 
-    sig { params(path: String).void }
-    def initialize(path)
-      super(path)
+    require_gem 'rails_best_practices'
 
-      require_gem('rails_best_practices')
+    require_file 'rails_best_practices.yml'
 
-      require_file('rails_best_practices.yml')
-
-      provides_binary('rails_best_practices', 'bundle exec rails_best_practices --config rails_best_practices.yml')
-    end
+    provides_binary 'rails_best_practices', 'bundle exec rails_best_practices --config rails_best_practices.yml'
   end
 end

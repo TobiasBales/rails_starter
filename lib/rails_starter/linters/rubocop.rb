@@ -10,23 +10,18 @@ module RailsStarter
   class Rubocop < Component
     extend T::Sig
 
-    include FileComponent
-    include GemComponent
-    include BinaryComponent
+    extend FileComponent
+    extend GemComponent
+    extend BinaryComponent
 
-    sig { params(path: String).void }
-    def initialize(path)
-      super(path)
+    require_gem 'rubocop'
+    require_gem 'rubocop-performance'
+    require_gem 'rubocop-rails'
+    require_gem 'rubocop-minitest'
 
-      require_gem('rubocop')
-      require_gem('rubocop-performance')
-      require_gem('rubocop-rails')
-      require_gem('rubocop-minitest')
+    require_file '.rubocop.yml'
 
-      require_file('.rubocop.yml')
-
-      provides_binary('rubocop', 'bundle exec rubocop --config .rubocop.yml')
-      provides_binary('rubocop_fix', 'bundle exec rubocop --auto-correct-all --config .rubocop.yml')
-    end
+    provides_binary 'rubocop', 'bundle exec rubocop --config .rubocop.yml'
+    provides_binary 'rubocop_fix', 'bundle exec rubocop --auto-correct-all --config .rubocop.yml'
   end
 end

@@ -23,15 +23,21 @@ module RailsStarter
       @binaries ||= {}
     end
 
-    sig { void }
-    # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity
-    def ensure_binaries_registered
-      raise 'Must include RailsStarter::Component first' unless is_a?(RailsStarter::Component)
-
+    def binaries_registered
       @binaries_registered = T.let(@binaries_registered, T.nilable(T::Boolean))
       @binaries_registered ||= false
+    end
 
-      return if @binaries_registered
+    def binaries_registered=(binaries_registered)
+      @binaries_registered = T.let(@binaries_registered, T.nilable(T::Boolean))
+      @binaries_registered = binaries_registered
+    end
+
+    sig { void }
+    # rubocop:disable Metrics/MethodLength
+    def ensure_binaries_registered
+      # raise 'Must include RailsStarter::Component first' unless is_a?(RailsStarter::Component)
+      return if binaries_registered
 
       register_met_hook do |path|
         binaries.reduce(true) do |met, (name, _)|
@@ -45,9 +51,9 @@ module RailsStarter
         end
       end
 
-      @binaries_registered = true
+      self.binaries_registered = true
     end
-    # rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/MethodLength
 
     sig { params(path: String, name: String).returns(T::Boolean) }
     def binary_exists?(path, name)

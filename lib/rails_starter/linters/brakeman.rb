@@ -9,13 +9,8 @@ module RailsStarter
   class Brakeman < Component
     extend T::Sig
 
-    include GemComponent
+    extend GemComponent
 
-    sig { params(path: String).void }
-    def initialize(path)
-      super(path)
-
-      require_gem 'brakeman'
-    end
+    require_gem 'brakeman'
   end
 end

@@ -21,15 +21,20 @@ module RailsStarter
       @files ||= []
     end
 
-    sig { void }
-    # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity
-    def ensure_files_registered
-      raise 'Must include RailsStarter::Component first' unless is_a?(RailsStarter::Component)
-
+    def files_registered
       @files_registered = T.let(@files_registered, T.nilable(T::Boolean))
       @files_registered ||= false
+    end
 
-      return if @files_registered
+    def files_registered=(files_registered)
+      @files_registered = T.let(@files_registered, T.nilable(T::Boolean))
+      @files_registered = files_registered
+    end
+
+    sig { void }
+    # rubocop:disable Metrics/MethodLength
+    def ensure_files_registered
+      return if files_registered
 
       register_met_hook do |path|
         files.reduce(true) do |met, file|
@@ -43,9 +48,9 @@ module RailsStarter
         end
       end
 
-      @files_registered = true
+      self.files_registered = true
     end
-    # rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/MethodLength
 
     sig { params(filename: String, path: String).void }
     def copy_file(filename, path)
