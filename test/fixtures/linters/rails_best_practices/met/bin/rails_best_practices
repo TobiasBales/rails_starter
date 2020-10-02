@@ -1,0 +1,4 @@
+#/usr/bin/env bash
+set -euo pipefail
+
+bundle exec rails_best_practices --config rails_best_practices.yml
