@@ -3,6 +3,7 @@
 
 require 'rails_starter/component'
 require 'rails_starter/linters/brakeman'
+require 'rails_starter/linters/rails_best_practices'
 require 'rails_starter/linters/rubocop'
 
 module RailsStarter
@@ -13,6 +14,7 @@ module RailsStarter
     def self.for_path(path)
       {
         brakeman: RailsStarter::Brakeman.new(path),
+        rails_best_practices: RailsStarter::RailsBestPractices.new(path),
         rubocop: RailsStarter::Rubocop.new(path)
       }
     end

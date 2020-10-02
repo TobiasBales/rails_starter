@@ -1,0 +1,6 @@
+# typed: ignore
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+gem 'rails_best_practices'
